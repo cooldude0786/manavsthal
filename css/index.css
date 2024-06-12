@@ -1,0 +1,14 @@
+.input-group{
+    gap: 10px;
+}
+ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.list-group-item{
+    /* margin-bottom: 12px; Add margin bottom to create spacing between list items
+    gap
+     */
+     gap: 20px;
+}
