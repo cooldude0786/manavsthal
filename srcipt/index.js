@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, push, child, get, remove, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-
+var val
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -59,14 +59,15 @@ function writeData(data) {
 
 // Function to update data in the database
 function updateData(updates) {
-    update(ref(rootRef, 'eid/2k24/'), updates)
+    return update(child(rootRef, 'eid/2k24/'), updates)
         .then(() => {
             return "Data successfully updated";
         })
         .catch((error) => {
-            return "Error updating data: " + error;
+            throw "Error updating data: " + error;
         });
 }
+
 
 // Function to delete data from the database
 function deleteData() {
@@ -77,32 +78,108 @@ function deleteData() {
         .catch((error) => {
             console.error("Error deleting data: ", error);
         });
-}
-document.getElementById('search').addEventListener('click', async () => {
+} document.getElementById('search').addEventListener('click', async () => {
     const val = await readData();
     const ul = document.querySelector('.list-group'); // Selecting the ul element
 
+    const sortedVal = Object.entries(val)
+        .map(([key, value]) => ({ id: key, ...JSON.parse(value) }))
+        .sort((a, b) => {
+            const [aPrefix, aNumber] = a["Flat No"].split('-');
+            const [bPrefix, bNumber] = b["Flat No"].split('-');
+
+            if (aPrefix !== bPrefix) {
+                return aPrefix.localeCompare(bPrefix);
+            }
+
+            return parseInt(aNumber) - parseInt(bNumber);
+        });
+
     // Clearing previous list items
     ul.innerHTML = '';
-
-    for (let i in val) {
-        let temp = JSON.parse(val[i]);
+    let count = 1;
+    let goatCount = 0;
+    let goatCountBrougth = 0;
+    let goatCountWaiting = 0;
+    for (let i in sortedVal) {
+        let temp = sortedVal[i];
 
         // Creating li element
         let li = document.createElement('li');
-        li.setAttribute('id', i)
+        li.setAttribute('id', temp['id'])
         li.classList.add('align-items-center', 'd-flex', 'flex-wrap', 'justify-content-between', 'list-group-item', 'p-2', 'w-100');
 
         // Creating and appending div elements with data
         ['Flat No', 'Name', 'Count', 'Status'].forEach(key => {
             let div = document.createElement('div');
             div.textContent = `${key}: ${temp[key]}`;
+            div.classList.add('col-sm');
+            if (key === "Status" && temp[key] === "Bought") {
+                goatCountBrougth = goatCountBrougth + parseInt(temp['Count'])
+
+                li.classList.add('bg-success');
+            }
             li.appendChild(div);
+        });
+
+        goatCount += parseInt(temp['Count']);
+        if (temp['Status'] == 'Waiting') {
+            goatCountWaiting = goatCountWaiting + parseInt(temp['Count'])
+        }
+
+        // Adding click event listener to li
+        li.addEventListener('click', () => {
+            // Populate modal fields with li values
+            document.getElementById('updateId').value = li.id;
+            document.getElementById('updateFlatNo').value = temp['Flat No'];
+            document.getElementById('updateName').value = temp['Name'];
+            document.getElementById('updateCount').value = temp['Count'];
+            document.getElementById('updateStatus').value = temp['Status'];
+
+            // Show the modal
+            $('#updateModal').modal('show');
         });
 
         // Appending li to ul
         ul.appendChild(li);
+        count++;
     }
+    document.getElementById('tGoats').innerText = goatCount;
+    document.getElementById('tBGoats').innerText = goatCountBrougth;
+    document.getElementById('tWGoats').innerText = goatCountWaiting;
+});
+
+
+document.getElementById('updateSubmit').addEventListener('click', () => {
+    // Get the updated values from the modal fields
+    const updateId = document.getElementById('updateId').value;
+    const updateFlatNo = document.getElementById('updateFlatNo').value;
+    const updateName = document.getElementById('updateName').value;
+    const updateCount = document.getElementById('updateCount').value;
+    const updateStatus = document.getElementById('updateStatus').value;
+
+    // Construct the updates object
+    var data = {
+        "Flat No": updateFlatNo,
+        "Name": updateName,
+        "Count": updateCount,
+        "Status": updateStatus
+    }
+    const updates = {
+        [updateId]: JSON.stringify(data)
+    };
+
+    // Call the updateData function with the updates
+    updateData(updates)
+        .then(message => {
+            alert(message); // Display success message
+        })
+        .catch(error => {
+            alert("Error updating data: " + error); // Display error message
+        });
+    document.getElementById('search').click()
+        $('#updateModal').modal('hide');
+
 });
 
 document.getElementById('modelSubmit').addEventListener('click', async () => {

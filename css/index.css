@@ -11,4 +11,8 @@ ul {
     gap
      */
      gap: 20px;
+     transition: 0.2s ease-in ;
+}
+.list-group-item:hover{
+    background-color: aqua;
 }

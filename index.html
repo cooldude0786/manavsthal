@@ -22,21 +22,32 @@
     <div class="align-content-center p-5 col-sm-12 d-flex justify-content-center flex-column  ">
         <div class="input-group col-sm-12">
             <div class="input-group justify-content-center" id="button-addon4">
-                <button class="btn btn-outline-secondary" id="search" type="button">search</button>
+                <button class="btn btn-outline-secondary" id="search" type="button">Get All</button>
                 <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
-                    data-target="#exampleModal">add</button>
-
+                    data-target="#exampleModal">Add</button>
+                <!-- <button class="btn btn-outline-secondary" id="search" type="button">Get All</button> -->
 
             </div>
         </div>
-
+        <div class="align-items-center col-sm-12 d-flex justify-content-center p-2">
+            <div>Total number of Goats:-</div>
+            <div id="tGoats"></div>
+        </div>
+        <div class="align-items-center col-sm-12 d-flex justify-content-center p-2">
+            <div>Total number of Goats Bought:-</div>
+            <div id="tBGoats"></div>
+        </div>
+        <div class="align-items-center col-sm-12 d-flex justify-content-center p-2">
+            <div>Total number of Goats Waiting:-</div>
+            <div id="tWGoats"></div>
+        </div>
         <ul class="list-group pt-5">
             <!-- <li class="list-group-item">An item</li> -->
             <!-- <li class="align-items-center d-flex flex-wrap justify-content-between list-group-item p-2 w-100">
-                <div>Flat No: 1</div>
-                <div>Name: 1</div>
-                <div>Count: 1</div>
-                <div>Status: Active</div>
+                <div class="col-sm-1">Flat No: 1</div>
+                <div class="col-sm-4">Name: 1</div>
+                <div class="col-sm-2">Count: 1</div>
+                <div class="col-sm-1">Status: Waiting</div>
             </li> -->
         </ul>
     </div>
@@ -76,13 +87,55 @@
                         <label for="status">Status:</label>
                         <select class="form-control" id="status">
                             <option value="Waiting">Waiting</option>
-                            <option value="Brought">Brought</option>
+                            <option value="Bought">Bought</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="modelSubmit">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for Update -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="updateId">ID:</label>
+                        <input type="text" class="form-control" id="updateId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateFlatNo">Flat No:</label>
+                        <input type="text" class="form-control" id="updateFlatNo">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateName">Name:</label>
+                        <input type="text" class="form-control" id="updateName">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateCount">Count:</label>
+                        <input type="number" class="form-control" id="updateCount">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateStatus">Status:</label>
+                        <select class="form-control" id="updateStatus">
+                            <option value="Waiting">Waiting</option>
+                            <option value="Bought">Bought</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateSubmit">Save changes</button>
                 </div>
             </div>
         </div>
