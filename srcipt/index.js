@@ -109,6 +109,12 @@ function deleteData() {
         li.setAttribute('id', temp['id'])
         li.classList.add('align-items-center', 'd-flex', 'flex-wrap', 'justify-content-between', 'list-group-item', 'p-2', 'w-100');
 
+        let div = document.createElement('div');
+            div.textContent = `Sr. No.: ${count}`;
+            li.appendChild(div);
+            
+            
+
         // Creating and appending div elements with data
         ['Flat No', 'Name', 'Count', 'Status'].forEach(key => {
             let div = document.createElement('div');

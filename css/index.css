@@ -16,3 +16,6 @@ ul {
 .list-group-item:hover{
     background-color: aqua;
 }
+.icon_size{
+    font-size: 30px;
+}

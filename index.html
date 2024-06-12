@@ -9,12 +9,24 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://kit.fontawesome.com/c153436894.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
     <title>Eid2k24</title>
 </head>
 
-<body>
+<body style="
+background-color: darkseagreen;
+">
 
-    <div class="align-content-center col-sm-12 d-flex justify-content-around bg-primary">
+    <div class="align-content-center col-sm-12 d-flex justify-content-around" style="
+    background-color: black;
+    color: white;
+">
         <h1>
             Eid 2k24
         </h1>
@@ -22,8 +34,8 @@
     <div class="align-content-center p-5 col-sm-12 d-flex justify-content-center flex-column  ">
         <div class="input-group col-sm-12">
             <div class="input-group justify-content-center" id="button-addon4">
-                <button class="btn btn-outline-secondary" id="search" type="button">Get All</button>
-                <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
+                <button class="btn btn-outline-success" id="search" type="button">Get All</button>
+                <button class="btn btn-outline-success" type="button" data-toggle="modal"
                     data-target="#exampleModal">Add</button>
                 <!-- <button class="btn btn-outline-secondary" id="search" type="button">Get All</button> -->
 
@@ -140,6 +152,44 @@
             </div>
         </div>
     </div>
+
+    <footer class="col-12 footer1 px-0" id="footer1">
+        <div class="align-items-center d-flex developer_info flex-column p-md-4">
+            <div class="border-bottom h-2 py-2 text-center w-100">Developer</div>
+            <div class="py-2"><img src="image/developer.jpg" style="height: 19rem;"></div>
+            <div style="font-family: 'Dancing Script', cursive;font-size: 20px;">Khizar Shaikh</div>
+        </div>
+
+        <div style="background: black;" class="pt-5">
+            <div class="d-flex justify-content-center pb-3">
+                <div class="px-2 icon_size social"><a href=""><i class="fa-brands fa-instagram" data-toggle="tooltip"
+                            data-placement="left" data-html="true"
+                            title="<img src='image/insta.jpg'height=150px;width=100px; />"></i></a></div>
+                <div class="px-2 icon_size social"><a href="https://www.linkedin.com/in/khizar-shaikh-3a541022a"><i
+                            class="fa-brands fa-linkedin" data-toggle="tooltip" data-placement="top" data-html="true"
+                            title="https://www.linkedin.com/in/khizar-shaikh-3a541022a"></i></a></div>
+                <div class="px-2 icon_size social"><a href="https://github.com/cooldude0786" data-toggle="tooltip"
+                        data-placement="right" data-html="true" title="https://github.com/cooldude0786"><i
+                            class="fa-brands fa-github"></i></a></div>
+            </div>
+            <div class="d-flex justify-content-center pt-5 pb-2" style="color: white;">
+                <div>Copyrigth &copy; 2022 Khizar Shiakh. All rigths reserved.</div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
 
     <script src="srcipt/index.js" type="module"></script>
 </body>
