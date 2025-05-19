@@ -147,8 +147,28 @@ document.getElementById('search').addEventListener('click', async () => {
     const sortedVal = Object.entries(val)
         .map(([key, value]) => ({ id: key, ...JSON.parse(value) }))
         .sort((a, b) => {
-            // You can add sorting logic here if needed
+            // Helper to extract prefix and number
+            const extractParts = (flatNo) => {
+                if (!flatNo) return { prefix: '', number: 0 };
+                // Match: optional letter(s) + optional space + digits
+                const match = flatNo.match(/^([A-Za-z]+)\s*-?\s*(\d+)/);
+                if (!match) return { prefix: flatNo, number: 0 }; // fallback
+                return {
+                    prefix: match[1].toUpperCase(), // normalize casing
+                    number: parseInt(match[2], 10) || 0,
+                };
+            };
+
+            const aParts = extractParts(a["Flat No"]);
+            const bParts = extractParts(b["Flat No"]);
+
+            if (aParts.prefix !== bParts.prefix) {
+                return aParts.prefix.localeCompare(bParts.prefix);
+            }
+
+            return aParts.number - bParts.number;
         });
+
 
     // Clearing previous list items
     ul.innerHTML = '';
