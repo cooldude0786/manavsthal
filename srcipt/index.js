@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, push, child, get, set, remove, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-let MaincollectionName = null;
+let MaincollectionName = '2025';
 var val
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -180,14 +180,14 @@ document.getElementById('search').addEventListener('click', async () => {
 
     for (let i in sortedVal) {
         let temp = sortedVal[i];
-        console.log(temp)
+        // console.log(temp)
         // Creating li element
         let li = document.createElement('li');
         li.setAttribute('id', temp['id']);
         li.classList.add('d-flex', 'flex-wrap', 'list-group-item', 'p-2', 'w-100');
 
         let div = document.createElement('div');
-        div.textContent = `Sr. No.: ${count - 1}`;
+        div.textContent = `Sr. No.: ${count}`;
         li.appendChild(div);
 
         // Creating and appending div elements with data
@@ -522,4 +522,7 @@ function showToast(message, isSuccess) {
 
 
 // Call the function to generate buttons on page load
-generateCollectionButtons();
+    // generateCollectionButtons();
+    // generateCollectionButtons();
+    document.getElementById('search').click();
+
